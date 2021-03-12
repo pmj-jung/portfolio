@@ -5,7 +5,7 @@
 > * 전체 인원 : 4명   
 > * 제작 기간 : 2020.11.01 ~ 2021.01.15(3.5개월)   
 > * 본인이 주로 맡은 부분 : 근태관리, 급여관리, 영업관리(거래처), 내정보관리, 버그테스트   
-> * 개발 언어 :  Java, HTML, CSS, Javascript, JQuery   
+> * 개발 언어 :  Java, HTML, CSS, Javascript(JQuery)   
 > * 웹서버 : Apache Tomcat 9
 > * 데이버베이스 : MySQL   
 > * 개발환경 : Spring Tool Suite 4(Spring Legacy Project)     
