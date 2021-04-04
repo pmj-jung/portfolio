@@ -38,7 +38,7 @@ public class ArticleCtr {
 	@Resource(name="uploadPath")
 	private String downloadPath;
 
-	@RequestMapping(value = "/deleteArticle.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/deleteArticle", method = RequestMethod.POST)
 	@ResponseBody
 	public String deleteArticle(
 			@RequestParam String boardCode,
@@ -47,7 +47,7 @@ public class ArticleCtr {
 		return "success";
 	}
 	
-	@RequestMapping(value = "/articleWrite.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/articleWrite", method = RequestMethod.GET)
 	public ModelAndView articleWrite(@RequestParam String boardCode) {
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("boardCode", boardCode); // 글쓰기버튼 눌러서 들어온 게시판코드
@@ -59,15 +59,15 @@ public class ArticleCtr {
 		return mav;
 	}
 	
-	@RequestMapping(value="/articleWrite.do", method = RequestMethod.POST)
+	@RequestMapping(value="/articleWrite", method = RequestMethod.POST)
 	public String articleWrite(
 			@ModelAttribute ArticleVO avo,
 			@RequestParam("files") MultipartFile file) throws Exception {
 		articleSrv.articleWrite(avo, file);
-		return "redirect:/board.do?boardCode=" + avo.getBoardCode();
+		return "redirect:/board?boardCode=" + avo.getBoardCode();
 	}
 	
-	@RequestMapping(value = "/articleView.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/articleView", method = RequestMethod.GET)
 	public ModelAndView articleView(
 			@ModelAttribute ArticleVO avo,
 			HttpServletRequest request) {
@@ -79,14 +79,14 @@ public class ArticleCtr {
 		return mav;
 	}
 	
-	@RequestMapping(value = "/delArticleOne.do")
+	@RequestMapping(value = "/delArticleOne")
 	@ResponseBody
 	public String delArticleOne(@ModelAttribute ArticleVO avo) {
 		articleSrv.delArticleOne(avo);
 		return "success";
 	}
 	
-	@RequestMapping(value = "/articleLikes.do")
+	@RequestMapping(value = "/articleLikes")
 	@ResponseBody
 	public String articleLikes(@ModelAttribute LikesVO lvo) {
 //		System.out.println(lvo.toString());
@@ -94,7 +94,7 @@ public class ArticleCtr {
 		return "success";
 	}
 	
-	@RequestMapping(value = "/articleDownload.do")
+	@RequestMapping(value = "/articleDownload")
 	public void fileDownload(@RequestParam String filename, HttpServletRequest request, HttpServletResponse response) {
 		
 		try {
@@ -141,7 +141,7 @@ public class ArticleCtr {
 		
 	}
 	
-	@RequestMapping(value = "/articleModify.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/articleModify", method = RequestMethod.GET)
 	public ModelAndView getArticleModify(@ModelAttribute ArticleVO avo) {
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("boardCode", avo.getBoardCode());
@@ -151,13 +151,13 @@ public class ArticleCtr {
 		return mav;
 	}
 	
-	@RequestMapping(value = "/articleModify.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/articleModify", method = RequestMethod.POST)
 	public String setArticleModify(@ModelAttribute ArticleVO avo, @RequestParam("files") MultipartFile file) throws Exception {
 		articleSrv.articleModify(avo, file);
-		return "redirect:/articleView.do?boardCode=" + avo.getBoardCode() + "&aid=" + avo.getAid();
+		return "redirect:/articleView?boardCode=" + avo.getBoardCode() + "&aid=" + avo.getAid();
 	}
 	
-	@RequestMapping(value = "/articleReply.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/articleReply", method = RequestMethod.GET)
 	public ModelAndView getArticleReply(@ModelAttribute ArticleVO avo) {
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("article", articleSrv.articleView(avo)); // 원글에 대한 정보
@@ -167,9 +167,9 @@ public class ArticleCtr {
 		return mav;
 	}
 	
-	@RequestMapping(value = "/articleReply.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/articleReply", method = RequestMethod.POST)
 	public String setArticleReply(@ModelAttribute ArticleVO avo, @RequestParam("files") MultipartFile file) throws Exception {
 		articleSrv.setArticleReply(avo, file);
-		return "redirect:/board.do?boardCode=" + avo.getBoardCode();
+		return "redirect:/board?boardCode=" + avo.getBoardCode();
 	}
 }

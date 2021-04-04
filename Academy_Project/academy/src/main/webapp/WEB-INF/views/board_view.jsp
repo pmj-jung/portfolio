@@ -9,20 +9,20 @@
 	<c:when test="${(sessionScope.userAuth eq null && board.boardRead > 0) || (sessionScope.userAuth <= board.boardRead) }">
 		<script>
 			alert("게시판 접근권한이 없습니다.");
-			location.href="main.do";
+			location.href="main";
 		</script>
 	</c:when>
 	<c:when test="${empty article.aid || article.articleSubject eq 'deleted'}">
 		<script>
 		alert("존재하지 않는 게시글입니다.");
-		location.href="board.do?boardCode=${board.boardCode}";
+		location.href="board?boardCode=${board.boardCode}";
 		</script>
 	</c:when>
 	<c:when test="${(article.articleSecret eq 1 && sessionScope.uid ne article.articleWriter && sessionScope.userAuth < 3)
 									 || (article.articleSecret eq 1 && empty sessionScope.uid)}">
 		<script>
 			alert("해당 게시글에 대한 접근권한이 없습니다.");
-			location.href="main.do";
+			location.href="main";
 		</script>
 	</c:when>
 </c:choose>
@@ -35,13 +35,13 @@
       <div class="m_b10 content_wrap">
         <div class="btn_container white_s_no p_b10 flex justify_c_between">
           <div class="btn_box1">
-            <button type="button" class="btn_all active" onClick="location.href='${pageContext.request.contextPath}/board.do?boardCode=${board.boardCode}'">목록</button>
+            <button type="button" class="btn_all active" onClick="location.href='${pageContext.request.contextPath}/board?boardCode=${board.boardCode}'">목록</button>
             
           </div>
           <div class="btn_box2">
-            <button type="button" class="btn_reply" onClick="location.href='${pageContext.request.contextPath}/articleReply.do?boardCode=${board.boardCode}&aid=${article.aid}';">답글</button>
+            <button type="button" class="btn_reply" onClick="location.href='${pageContext.request.contextPath}/articleReply?boardCode=${board.boardCode}&aid=${article.aid}';">답글</button>
             <c:if test="${sessionScope.uid eq article.articleWriter}">
-            	<button type="button" class="btn_mod" onClick="location.href='${pageContext.request.contextPath}/articleModify.do?boardCode=${board.boardCode}&aid=${article.aid}'">수정</button>
+            	<button type="button" class="btn_mod" onClick="location.href='${pageContext.request.contextPath}/articleModify?boardCode=${board.boardCode}&aid=${article.aid}'">수정</button>
             </c:if>
             <c:if test="${sessionScope.uid eq article.articleWriter || sessionScope.userAuth >= 3 }">
 	            <button type="button" class="btn_del" onClick="delArticleOne('${board.boardCode}','${article.aid}');">삭제</button>
@@ -71,7 +71,7 @@
               	<c:choose>
 	               	<c:when test="${(sessionScope.userAuth >= board.boardDownload || board.boardDownload eq 0) && (not empty article.articleFileName)}">
 	               		<div class="file_box">첨부파일 : 
-		                	<a href="${pageContext.request.contextPath}/articleDownload.do?filename=${article.articleFileName}">
+		                	<a href="${pageContext.request.contextPath}/articleDownload?filename=${article.articleFileName}">
 		                		<span>${article.articleFileOrigin}</span>
 		               		</a>
 	               		</div>

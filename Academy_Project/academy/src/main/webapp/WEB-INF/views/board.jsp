@@ -9,13 +9,13 @@
 	<c:when test="${sessionScope.userAuth eq null && board.boardRead > 0}">
 		<script>
 			alert("게시판 접근권한이 없습니다.");
-			location.href="main.do"
+			location.href="main"
 		</script>
 	</c:when>
 	<c:when test="${sessionScope.userAuth < board.boardRead}">
 		<script>
 			alert("게시판 접근권한이 없습니다.");
-			location.href="main.do"
+			location.href="main"
 		</script>
 	</c:when>
 </c:choose>
@@ -31,7 +31,7 @@
       <p class="gray font_14 p_tb10">${board.boardDesc}</p>
       <div class="flex justify_c_between m_b10">
         <div class="btn_wrap white_s_no flex justify_c_between">
-          <a href="${pageContext.request.contextPath}/board.do?boardCode=${board.boardCode}"><button type="button" class="btn_all active">전체글</button></a>
+          <a href="${pageContext.request.contextPath}/board?boardCode=${board.boardCode}"><button type="button" class="btn_all active">전체글</button></a>
          	<ul class="search_wrap white_s_no p_l2">
             <li>
               <select class="sel_100" id="pageChange" onChange="changePage();">
@@ -99,7 +99,7 @@
                     	&nbsp;<img src="${pageContext.request.contextPath}/img/icon_reply.gif" />
                     </c:forEach>
                     
-		            		<a href="${pageContext.request.contextPath}/articleView.do?boardCode=${board.boardCode}&aid=${article.aid}">
+		            		<a href="${pageContext.request.contextPath}/articleView?boardCode=${board.boardCode}&aid=${article.aid}">
 			            		<c:choose>
 			            			<c:when test="${article.articleSubject eq 'deleted'}">삭제된 게시글입니다.</c:when>
 			            			<c:otherwise>${article.articleSubject}</c:otherwise>
@@ -111,7 +111,7 @@
 		            		</c:if>
 	            		</c:when>
 	            		<c:when test="${article.articleSecret eq 1 && article.articleWriter eq sessionScope.uid || sessionScope.userAuth >= 3}">
-	            			<a href="${pageContext.request.contextPath}/articleView.do?boardCode=${board.boardCode}&aid=${article.aid}">${article.articleSubject}</a>
+	            			<a href="${pageContext.request.contextPath}/articleView?boardCode=${board.boardCode}&aid=${article.aid}">${article.articleSubject}</a>
 	            			<c:if test="${article.commentCount ne 0}">
 		            			<span class="count font_12 m_l2">[${article.commentCount}]</span>
 		            		</c:if>
@@ -138,7 +138,7 @@
         	<button type="button" class="btn_delete" id="deleteAll">선택삭제</button>
         </c:if>
         <c:if test="${sessionScope.userAuth >= board.boardWrite}">
-	        <button type="button" class="btn_write" id="btn_write" onClick="location.href='articleWrite.do?boardCode=${board.boardCode}';">
+	        <button type="button" class="btn_write" id="btn_write" onClick="location.href='articleWrite?boardCode=${board.boardCode}';">
 	          <i class="fas fa-pencil-alt"></i> 글쓰기</button>
         </c:if>
         <div class="page_grp white_s_no">

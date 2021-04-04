@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class MainCtr {
 
 	// 메인페이지
-	@RequestMapping(value =  {"/main.do","/"})
+	@RequestMapping(value =  {"/main","/"})
 	public String getMain() {
 		return "main";
 	}

@@ -53,8 +53,8 @@
         </form>
 
         <div class="link flex justify_c_between p_tb10">
-          <a href="${pageContext.request.contextPath}/login.do" tabindex="9">로그인</a>
-          <a href="${pageContext.request.contextPath}/main.do" tabindex="10">메인으로</a>
+          <a href="${pageContext.request.contextPath}/login" tabindex="9">로그인</a>
+          <a href="${pageContext.request.contextPath}/main" tabindex="10">메인으로</a>
         </div>
       </div>
     </div>

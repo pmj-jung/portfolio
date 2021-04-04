@@ -1,12 +1,9 @@
 package com.portfolio.academy.service;
 
-import java.io.File;
 import java.util.List;
 
 import javax.annotation.Resource;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,8 +18,6 @@ public class BoardSrvImpl implements BoardSrv{
 	
 	@Resource(name="uploadPath")
 	private String uploadPath; // 업로드된 파일 저장 경로
-	
-	private static final Logger logger = LoggerFactory.getLogger(BoardSrvImpl.class);
 	
 	@Autowired
 	BoardDao boardDao;

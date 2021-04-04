@@ -9,7 +9,7 @@
   <div class="content_box flex justify_c_between">
     <%@ include file="/WEB-INF/views/include/MENU.jsp" %>
     <div class="w_100 p_10">
-      <form method="POST" enctype="multipart/form-data" action="${pageContext.request.contextPath}/articleModify.do" autocomplete="off">
+      <form method="POST" enctype="multipart/form-data" action="${pageContext.request.contextPath}/articleModify" autocomplete="off">
       	<!-- 수정전 글 정보 -->
         <input type="hidden" name="articleWriter" value="${sessionScope.uid}"/>
         <input type="hidden" name="aid" value="${article.aid}"/>
@@ -42,7 +42,7 @@
           </div>
           <c:if test="${not empty article.articleFileName}">
 	          <div class="m_b10 input_box">
-		          <a href="${pageContext.request.contextPath}/articleDownload.do?filename=${article.articleFileName}">
+		          <a href="${pageContext.request.contextPath}/articleDownload?filename=${article.articleFileName}">
 		        		<span>${article.articleFileOrigin}</span>
 		       		</a>
 		       		<span class="gray font_14">새로운 첨부파일 업로드 할 경우, 이전의 첨부파일은 삭제됩니다.</span>

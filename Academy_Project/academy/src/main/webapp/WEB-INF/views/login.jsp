@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" 
+    pageEncoding="UTF-8" %>
 <%@ include file="/WEB-INF/views/include/HEAD.jsp" %>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/regnlog.css">
 <body>
@@ -8,7 +8,7 @@
     <div class="login_wrapper flex flex_col justify_c_center align_i_center w_100 h_100">
       <div class="login_content p_30">
         <h2 class="center m_b20">로그인</h2>
-        <form method="POST" id="login_frm" action="${pageContext.request.contextPath}/login.do" autocomplete="off">
+        <form method="POST" id="login_frm" action="${pageContext.request.contextPath}/login" autocomplete="off">
           <div style="color:#f00;font-size:14px;text-align:center;margin:10px 0;font-weight:700;">${msg}</div>
           <div class="lgnIpBox m_b10">
             <input class="p_l5" type="text" id="userId" name="userId" placeholder="아이디" />
@@ -22,7 +22,7 @@
           <div class="lgn_save m_tb10">
             <input type="checkbox" id="chk_save"/>
             <label for="chk_save">로그인 저장</label>
-            <a href="${pageContext.request.contextPath}/register.do">회원가입</a>
+            <a href="${pageContext.request.contextPath}/register">회원가입</a>
           </div>
         </form>
         <div class="etc_text font_12 center m_t20">
@@ -39,5 +39,5 @@
   </div>
   <%@ include file="/WEB-INF/views/include/FOOTER.jsp" %>
 </body>
-<script src='${pageContext.request.contextPath}/js/login.js'></script>
+<script src="${pageContext.request.contextPath}/js/login.js"></script>
 </html>

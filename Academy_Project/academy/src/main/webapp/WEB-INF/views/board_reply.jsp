@@ -9,7 +9,7 @@
 	<c:when test="${empty sessionScope.uid}">
 		<script>
 			alert("게시글 작성권한이 없습니다.");
-			location.href="main.do"
+			location.href="main"
 		</script>
 	</c:when>
 </c:choose>
@@ -19,7 +19,7 @@
   <div class="content_box flex justify_c_between">
     <%@ include file="/WEB-INF/views/include/MENU.jsp" %>
     <div class="w_100 p_10">
-      <form method="post" enctype="multipart/form-data" action="${pageContext.request.contextPath}/articleReply.do" autocomplete="off">
+      <form method="post" enctype="multipart/form-data" action="${pageContext.request.contextPath}/articleReply" autocomplete="off">
       	<input type="hidden" name="articleRef" value="${article.articleRef}" />
       	<input type="hidden" name="articleLevel" value="${article.articleLevel}" />
       	<input type="hidden" name="articleLayer" value="${article.articleLayer}" />

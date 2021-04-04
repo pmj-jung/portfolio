@@ -11,11 +11,11 @@
           <ul class="brd_show">
           	<c:forEach var="boardList" items="${boardList}" varStatus="status">
           		<c:if test="${sessionScope.userAuth >= boardList.boardRead || boardList.boardRead == 0}">
-          			<li><a href="${pageContext.request.contextPath}/board.do?boardCode=${boardList.boardCode}">${boardList.boardName}</a></li>
+          			<li><a href="${pageContext.request.contextPath}/board?boardCode=${boardList.boardCode}">${boardList.boardName}</a></li>
           		</c:if>
           	</c:forEach>
           	<c:if test="${sessionScope.userAuth >= 4}">
-            	<li><a href="${pageContext.request.contextPath}/boardSetting.do">게시판 관리</a></li>
+            	<li><a href="${pageContext.request.contextPath}/boardSetting">게시판 관리</a></li>
           	</c:if>
           </ul>
         </li>

@@ -18,14 +18,14 @@ public class CommentCtr {
 	@Autowired
 	CommentSrv commentSrv;
 
-	@RequestMapping("/setComment.do")
+	@RequestMapping("/setComment")
 	@ResponseBody
 	public String setComment(@ModelAttribute CommentVO cvo) {
 		commentSrv.setComment(cvo);
 		return "success";
 	}
 	
-	@RequestMapping("/getCommentList.do")
+	@RequestMapping("/getCommentList")
 	@ResponseBody
 	public Map<String, Object> getCommentList(@ModelAttribute CommentVO cvo) {
 		Map<String, Object> map = new HashMap<String, Object>();
@@ -34,21 +34,21 @@ public class CommentCtr {
 		return map;
 	}
 	
-	@RequestMapping("/commentDelete.do")
+	@RequestMapping("/commentDelete")
 	@ResponseBody
 	public String commentDelete(@ModelAttribute CommentVO cvo) {
 		commentSrv.commentDelete(cvo);
 		return "success";
 	}
 	
-	@RequestMapping("/modifyComment.do")
+	@RequestMapping("/modifyComment")
 	@ResponseBody
 	public String modifyComment(@ModelAttribute CommentVO cvo) {
 		commentSrv.modifyComment(cvo);
 		return "success";
 	}
 	
-	@RequestMapping("/commentReply.do")
+	@RequestMapping("/commentReply")
 	@ResponseBody
 	public String setCommentReply(@ModelAttribute CommentVO cvo) {
 		commentSrv.setCommentReply(cvo);

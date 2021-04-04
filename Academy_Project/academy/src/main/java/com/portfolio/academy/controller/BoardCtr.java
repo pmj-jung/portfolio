@@ -25,7 +25,7 @@ public class BoardCtr {
 	@Autowired
 	CommentSrv commentSrv;
 	
-	@RequestMapping("/boardSetting.do")
+	@RequestMapping("/boardSetting")
 	public ModelAndView getCommunity() {
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("boardList",boardSrv.getBoardList());
@@ -34,7 +34,7 @@ public class BoardCtr {
 		return mav;
 	}
 	
-	@RequestMapping(value = "/setBoard.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/setBoard", method = RequestMethod.POST)
 	@ResponseBody
 	public String setBoard(@ModelAttribute BoardVO bvo) {
 		// 1. 게시판코드,게시판이름,게시판설명의 앞뒤공백제거 후 저장
@@ -54,13 +54,13 @@ public class BoardCtr {
 		return result;
 	}
 	
-	@RequestMapping(value="/getBoardOne.do", method = RequestMethod.POST)
+	@RequestMapping(value="/getBoardOne", method = RequestMethod.POST)
 	@ResponseBody
 	public BoardVO getBoardOne(@RequestParam String boardCode) {
 		return boardSrv.getBoardOne(boardCode);
 	}
 	
-	@RequestMapping(value="/modifyBoard.do", method = RequestMethod.POST)
+	@RequestMapping(value="/modifyBoard", method = RequestMethod.POST)
 	@ResponseBody
 	public String modifyBoard(@ModelAttribute BoardVO bvo) {
 //		System.out.println("boardCode: " +  bvo.getBoardCode() + "\nboardName : " + bvo.getBoardName() + "\nboardDesc : " + bvo.getBoardDesc());
@@ -69,14 +69,14 @@ public class BoardCtr {
 		return "success";
 	}
 	
-	@RequestMapping(value="/deleteBoard.do", method = RequestMethod.POST)
+	@RequestMapping(value="/deleteBoard", method = RequestMethod.POST)
 	@ResponseBody
 	public String deleteBoard(@RequestParam(value="chkArr[]") List<String> chkArr) {
 		boardSrv.deleteBoard(chkArr);
 		return "success";
 	}
 	
-	@RequestMapping(value="/board.do")
+	@RequestMapping(value="/board")
 	public ModelAndView getBoard(
 			@RequestParam String boardCode,
 			@RequestParam(defaultValue = "article_subject") String searchOpt,

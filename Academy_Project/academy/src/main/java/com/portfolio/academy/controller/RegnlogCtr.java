@@ -29,7 +29,7 @@ public class RegnlogCtr {
 	BCryptPasswordEncoder pwdEncoder;
 	
 	// 회원가입 화면 보여주기
-	@RequestMapping(value = "/register.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/register", method = RequestMethod.GET)
 	public String getRegister() {
 		return "register";
 	}
@@ -72,20 +72,21 @@ public class RegnlogCtr {
 	}
 
 	// 로그인 화면 보여주기
-	@RequestMapping(value = "/login.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String getLogin(HttpSession session, HttpServletResponse response) throws Exception {
-		PrintWriter out = response.getWriter();
 		
 		if( session.getAttribute("userName") != null ) {
+			PrintWriter out = response.getWriter();
+			response.setContentType("text/html; charset=UTF-8");
 			out.append("<script>alert('이미 로그인 된 상태입니다');");
-			out.append("location.href='main.do';</script>").flush();
+			out.append("location.href='main';</script>").flush();
 		}
 		
 		return "login";
 	}
 	
 	// 로그인하기
-	@RequestMapping(value = "/login.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public ModelAndView loginCheck(@ModelAttribute UserVO uvo,HttpSession session) {
 //		System.out.println("입력된 userId : " + uvo.getUserId() + ",입력된 userPwd : " + uvo.getUserPwd());
 		ModelAndView mav = new ModelAndView();
@@ -96,7 +97,7 @@ public class RegnlogCtr {
 		if( pwd != null && pwdMatch == true  ) {
 			uvo.setUserPwd(pwd);
 			regnlogSrv.loginCheck(uvo, session);
-			mav.setViewName("redirect:/main.do");
+			mav.setViewName("redirect:/main");
 		}else {
 			mav.addObject("msg", "아이디/비밀번호를 확인하세요.");
 			mav.setViewName("/login");
@@ -106,14 +107,14 @@ public class RegnlogCtr {
 	}
 	
 	// 로그아웃하기
-	@RequestMapping("/logout.do")
+	@RequestMapping("/logout")
 	public void logout(HttpSession session, HttpServletResponse response) throws Exception {
 		regnlogSrv.logout(session);
 		
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter out = response.getWriter();
 		out.append("<script>alert('정상적으로 로그아웃 되었습니다.');");
-		out.append("location.href='login.do';");
+		out.append("location.href='login';");
 		out.append("</script>").flush();
 	}
 	

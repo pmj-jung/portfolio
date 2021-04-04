@@ -9,7 +9,7 @@
 	<c:when test="${empty sessionScope.uid}">
 		<script>
 			alert("게시글 작성권한이 없습니다.");
-			location.href="main.do"
+			location.href="main"
 		</script>
 	</c:when>
 </c:choose>
@@ -19,7 +19,7 @@
   <div class="content_box flex justify_c_between">
     <%@ include file="/WEB-INF/views/include/MENU.jsp" %>
     <div class="w_100 p_10">
-      <form onsubmit="return checkSubject();" method="post" enctype="multipart/form-data" action="${pageContext.request.contextPath}/articleWrite.do">
+      <form onsubmit="return checkSubject();" method="post" enctype="multipart/form-data" action="${pageContext.request.contextPath}/articleWrite">
       	<div class="write_top">
           <h2>게시글 작성</h2>
           <div class="flex justify_c_between m_tb10 w_100">
