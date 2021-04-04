@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/mvc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+
+	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
+	
+	<!-- Enables the Spring MVC @Controller programming model -->
+	<annotation-driven />
+
+	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
+	<resources location="/WEB-INF/css/, classpath=/WEB-INF/css/" mapping="/css/**" />
+	<resources location="/WEB-INF/js/, classpath=/WEB-INF/js/" mapping="/js/**" />
+	<resources location="/WEB-INF/img/, classpath=/WEB-INF/img/" mapping="/img/**" />
+	<resources location="/WEB-INF/ckeditor/, classpath=/WEB-INF/ckeditor/" mapping="/ckeditor/**" />
+	
+	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
+	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<beans:property name="prefix" value="/WEB-INF/views/" />
+		<beans:property name="suffix" value=".jsp" />
+	</beans:bean>
+	
+	<context:component-scan base-package="com.common.loginInterceptor" />
+	<context:component-scan base-package="com.portfolio.academy" />
+	
+	<!-- 파일 업로드 -->
+	<beans:bean class="org.springframework.web.multipart.commons.CommonsMultipartResolver" id="multipartResolver">
+		<!-- 최대업로드 가능한 바이트크기(50MB) -->
+		<beans:property name="maxUploadSize" value="52428800" />
+		
+		<!-- 디스크에 임시 파일을 생성하기 전에 메모리에 보관할 수 있는 최대 바이트 크기(1MB) -->
+		<beans:property name="maxInMemorySize" value="1048576" />
+		
+		<!-- defaultEncoding -->
+		<beans:property name="defaultEncoding" value="UTF-8" />
+	</beans:bean>
+	
+	<!-- 업로드 경로 설정 -->
+	<beans:bean class="java.lang.String" id="uploadPath">
+		<beans:constructor-arg value="C:\\upload\\article\\" />
+	</beans:bean>
+	
+	<beans:bean id="loginInter" class="com.common.loginInterceptor.LoginInterceptor" />
+	
+	<interceptors>
+			<interceptor>
+				<mapping path="/*.do" />
+				<beans:ref bean="loginInter" />
+			</interceptor>
+	</interceptors>
+	
+</beans:beans>

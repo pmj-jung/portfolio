@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="board">
+	
+	<sql id="searchCondition">
+		<choose>
+			<when test="words == ''"></when>
+			<when test="searchOpt == 'all'">
+				WHERE article_subject LIKE CONCAT('%', #{searchWords}, '%') 
+				OR article_content LIKE CONCAT('%', #{searchWords}, '%') 
+				OR user_name LIKE CONCAT('%', #{searchWords}, '%') 
+			</when>
+			<otherwise>
+				WHERE ${searchOpt} LIKE CONCAT('%', #{searchWords}, '%') 
+			</otherwise>
+		</choose>
+	</sql>
+	
+	<select id="checkCode" parameterType="String" resultType="int">
+		SELECT count(*) FROM board 
+		WHERE board_code = #{boardCode}
+	</select>
+	
+	<insert id="setBoard" parameterType="boardvo">
+		INSERT board SET 
+			board_code = #{boardCode},
+			board_name = #{boardName},
+			board_desc = #{boardDesc},
+			board_read = #{boardRead},
+			board_write = #{boardWrite},
+			board_comment = #{boardComment},
+			board_download = #{boardDownload} 
+	</insert>
+	
+	<insert id="setArticleTbl" parameterType="Hashmap">
+		${articleStr}
+	</insert>
+	
+	<insert id="setCommentTbl" parameterType="Hashmap">
+		${cmntStr}
+	</insert>
+	
+	<select id="getBoardList" resultType="boardvo">
+		SELECT 
+			id AS bid,
+			board_code AS boardCode,
+			board_name AS boardName,
+			board_desc AS boardDesc,
+			board_read AS boardRead,
+			board_write AS boardWrite,
+			board_comment AS boardComment,
+			board_download AS boardDownload 
+		FROM board 
+		ORDER BY id 
+	</select>
+	
+	<select id="getUserAuth" resultType="uservo">
+		SELECT 
+			id AS uaid,
+			auth_name AS authName 
+		FROM user_auth 
+		ORDER BY id 
+	</select>
+	
+	<select id="getBoardOne" parameterType="String" resultType="boardvo">
+		SELECT 
+			id AS bid,
+			board_code AS boardCode,
+			board_name AS boardName,
+			board_desc AS boardDesc,
+			board_read AS boardRead,
+			board_write AS boardWrite,
+			board_comment AS boardComment,
+			board_download AS boardDownload 
+		FROM board 
+		WHERE board_code = #{boardCode} 
+	</select>
+	
+	<update id="modifyBoard" parameterType="boardvo">
+		UPDATE board SET 
+			board_name = #{boardName},
+			board_desc = #{boardDesc},
+			board_read = #{boardRead},
+			board_write = #{boardWrite},
+			board_comment = #{boardComment},
+			board_download = #{boardDownload} 
+		WHERE board_code = #{boardCode} 
+	</update>
+	
+	<delete id="deleteBoard" parameterType="String">
+		DELETE FROM board WHERE board_code = #{boardCode}
+	</delete>
+	
+	<update id="dropArticle" parameterType="Hashmap">
+		${articleStr}
+	</update>
+	
+	<update id="dropComment" parameterType="Hashmap">
+		${commentStr}
+	</update>
+	
+	<select id="articleCount" parameterType="Hashmap" resultType="int">
+		SELECT COUNT(*) FROM article_${boardCode} 
+	</select>
+	
+	<select id="getArticleList" parameterType="Hashmap" resultType="articlevo">
+		SELECT 
+			A.id AS aid,
+			article_category AS articleCategory,
+			article_subject AS articleSubject,
+			article_writer AS articleWriter,
+			U.user_name AS articleWriterName,
+			article_regdate AS articleRegdate,
+			article_hit AS articleHit,
+			article_likes AS articleLikes,
+			article_secret AS articleSecret,
+			article_file_name AS articleFileName,
+			article_ref AS articleRef,
+			article_level AS articleLevel,
+			article_layer AS articleLayer,
+			(	SELECT count(C.id) 
+				FROM comment_${boardCode} AS C 
+				WHERE article_id = A.id ) AS commentCount 
+		FROM article_${boardCode} AS A 
+		JOIN user AS U ON A.article_writer = U.id 
+		<include refid="searchCondition"></include> 
+		ORDER BY article_ref DESC, article_level ASC, A.id DESC 
+		LIMIT #{start}, #{end} 
+	</select>
+
+</mapper>

@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="article">
+
+	<update id="deleteArticle" parameterType="Hashmap">
+		UPDATE article_${boardCode} SET 
+		article_subject = 'deleted',
+		article_content = '',
+		article_file_name = '',
+		article_file_origin = '',
+		article_file_url = '' 
+		WHERE id=#{aid} 
+	</update>
+	
+	<insert id="articleWrite" parameterType="articlevo">
+		<selectKey resultType="int" keyProperty="articleRef" order="BEFORE">
+			SELECT IFNULL(MAX(id), 0) + 1 FROM article_${boardCode} 
+		</selectKey>
+	
+		INSERT article_${boardCode} SET 
+				article_category = #{articleCategory},
+				article_subject = #{articleSubject},
+				article_writer = #{articleWriter},
+				article_content = #{articleContent},
+				article_regdate = now(),
+				article_secret = #{articleSecret},
+				article_file_name = #{articleFileName},
+				article_file_origin = #{articleFileOrigin},
+				article_file_url = #{articleFileUrl},
+				article_ref = #{articleRef},
+				article_level = 0,
+				article_layer = 0 
+	</insert>
+	
+	<select id="articleView" parameterType="articlevo" resultType="articlevo">
+		SELECT 
+			A.id AS aid,
+			article_category AS articleCategory,
+			article_subject AS articleSubject,
+			article_writer AS articleWriter,
+			U.user_name AS articleWriterName,
+			article_content AS articleContent,
+			article_regdate AS articleRegdate,
+			article_hit AS articleHit,
+			article_likes AS articleLikes,
+			article_secret AS articleSecret,
+			article_file_name AS articleFileName,
+			article_file_origin AS articleFileOrigin,
+			article_file_url AS articleFileUrl,
+			article_ref AS articleRef,
+			article_level AS articleLevel,
+			article_layer AS articleLayer 
+		FROM article_${boardCode} AS A 
+		JOIN user AS U ON A.article_writer = U.id 
+		WHERE A.id = #{aid} 
+	</select>
+	
+	<update id="hitUp" parameterType="articlevo">
+		UPDATE article_${boardCode} SET 
+			article_hit = article_hit + 1 
+		WHERE id = #{aid} 
+	</update>
+	
+	<select id="likeCheck" parameterType="likesvo" resultType="int">
+		SELECT COUNT(id) FROM likes 
+		WHERE board = #{boardId} AND article = #{articleId} AND user = #{userId} 
+	</select>
+	
+	<insert id="likeUp" parameterType="likesvo">
+		INSERT likes SET 
+				board = #{boardId},
+				article = #{articleId},
+				user = #{userId} 
+	</insert>
+	
+	<update id="articleLikeUp" parameterType="likesvo">
+		UPDATE article_${boardCode} SET 
+			article_likes = article_likes + 1 
+		WHERE id = #{articleId} 
+	</update>
+	
+	<delete id="likeDown" parameterType="likesvo">
+		DELETE FROM likes 
+		WHERE board=#{boardId} AND article=#{articleId} AND user=#{userId} 
+	</delete>
+	
+	<update id="articleLikeDown" parameterType="likesvo">
+		UPDATE article_${boardCode} SET 
+			article_likes = article_likes - 1 
+		WHERE id = #{articleId} 
+	</update>
+	
+	<update id="articleModify" parameterType="articlevo">
+		UPDATE article_${boardCode} SET 
+			article_category = #{articleCategory},
+			article_subject = #{articleSubject},
+			article_content = #{articleContent},
+			article_regdate = now(),
+			article_secret = #{articleSecret},
+			article_file_name = #{articleFileName},
+			article_file_origin = #{articleFileOrigin},
+			article_file_url = #{articleFileUrl} 
+		WHERE id = #{aid} 
+	</update>
+	
+	<select id="getFileName" parameterType="articlevo" resultType="String">
+		SELECT article_file_name AS articleFileName FROM article_${boardCode} WHERE id = #{aid} 
+	</select>
+	<!-- 
+	<select id="getArticleInfo" resultType="articlevo">
+		SELECT 
+			article_ref AS articleRef,
+			article_level AS articleLevel,
+			article_layer AS articleLayer 
+	    FROM article_${boardCode} 
+	    WHERE aid = #{aid}
+	</select>
+	 -->
+	<update id="setArticleLevel" parameterType="articlevo">
+		UPDATE article_${boardCode} SET 
+			article_level  = article_level + 1 
+		WHERE article_ref = #{articleRef} AND article_level > #{articleLevel}
+	</update>
+	
+	<insert id="setArticleReply" parameterType="articlevo">
+		INSERT article_${boardCode} SET 
+			article_category = #{articleCategory},
+			article_subject = #{articleSubject},
+			article_writer = #{articleWriter},
+			article_content = #{articleContent},
+			article_regdate = now(),
+			article_secret = #{articleSecret},
+			article_file_name = #{articleFileName},
+			article_file_origin = #{articleFileOrigin},
+			article_file_url = #{articleFileUrl},
+			article_ref = #{articleRef},
+			article_level = #{articleLevel} + 1,
+			article_layer = #{articleLayer} + 1 
+	</insert>
+
+</mapper>

@@ -1,0 +1,152 @@
+@charset 'utf-8';
+
+.board_frm {
+  width: 900px;
+}
+
+.opt_tbl {
+  background-color: #eee;
+  white-space: nowrap;
+  border-collapse: collapse;
+}
+
+.opt_tbl tr td, .board_list tr td {
+  padding: 2px;
+  border: 1px solid #ddd;
+  height: 32px;
+}
+
+.opt_tbl .td_title {
+  text-align: center;
+  width: 10%;
+  white-space: nowrap;
+}
+
+.opt_tbl .td_opt {
+  background-color: #fff;
+}
+
+.btn_reset {
+  display: inline-block;
+  border: 1px solid #d0d0d0;
+  border-radius: 2px;
+  background-color: #fff;
+  width: 70px;
+  height: 35px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 700;
+  outline: none;
+  color:#333;
+}
+
+.btn_reset:hover {
+  color:#000;
+  background-color: rgba(194,194,194,0.4);
+}
+
+.btn_submit {
+  display: inline-block;
+  border: 1px solid #d0d0d0;
+  border-radius: 2px;
+  background-color: rgba(0, 103, 163, 0.8);
+  width: 70px;
+  height: 35px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 700;
+  outline: none;
+  color:#ddd;
+}
+
+.btn_submit:hover {
+  background-color: rgba(0, 103, 163, 0.9);
+  color:#fff;
+}
+
+.board_list {
+  width: 100%;
+  white-space: nowrap;
+  border-collapse: collapse;
+  text-align: center;
+  border-spacing: 0;
+}
+
+.board_list thead {
+  float:left;
+  width: 900px;
+}
+
+.board_list  tbody {
+  overflow-y: auto;
+  overflow-x: hidden;
+  float: left;
+  width: 900px;
+  max-height:calc(100vh - 460px);
+}
+
+.board_list tbody tr {
+  display:table;
+  width: 900px;
+}
+
+.board_list th:first-child,
+.board_list td:first-child {
+  width: 60px;
+}
+
+.board_list th:nth-child(2),
+.board_list td:nth-child(2) {
+  width: 100px; 
+}
+
+.board_list th:nth-child(3),
+.board_list td:nth-child(3) {
+  width: 320px; 
+}
+
+.board_list th:nth-child(4),
+.board_list th:nth-child(5),
+.board_list th:nth-child(6),
+.board_list th:nth-child(7),
+.board_list td:nth-child(4),
+.board_list td:nth-child(5),
+.board_list td:nth-child(6),
+.board_list td:nth-child(7) {
+  width: 80px;
+}
+
+.board_list th:nth-child(8),
+.board_list td:nth-child(8) {
+  width: 100px;
+}
+
+.board_list th {
+  background-color: #eee;
+  border: 1px solid #ddd;
+  height: 32px;
+}
+
+.btn_mod {
+  color:#fff;
+  border:none;
+  background-color: #ff5656;
+  width: 40px;
+  padding: 3px 2px;
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+.btn_del {
+  text-align: center;
+  border:none;
+  border-radius: 2px;
+  background-color: transparent;
+  width: 65px;
+  height: 32px;
+  cursor: pointer;
+  font-size: 14px;
+  outline: none;
+  background-color: #c82848;
+  color:#fff;
+}

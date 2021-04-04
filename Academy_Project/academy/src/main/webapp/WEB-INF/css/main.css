@@ -1,0 +1,44 @@
+@charset 'utf-8';
+
+section {
+  width: 100%;
+  height: calc(100vh - 115px);
+}
+
+.img_box {
+  width: 100%;
+  height: calc(100vh - 290px);
+
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+
+  position:relative;
+}
+
+.desc_box {
+  position: absolute;
+  top:50%;
+  left:50%;
+  transform: translate(-50%,-50%);
+  text-align: center;
+  font-weight: 700;
+}
+
+.sec_btm {
+  height: 175px;
+}
+
+.btm_content {
+  width: 49%;
+  text-align: center;
+  display: inline-block;
+  position: relative;
+}
+
+.btm_content div {
+  position: absolute;
+  top:50%;
+  left:50%;
+  transform: translate(-50%,-50%);
+}

@@ -1,0 +1,520 @@
+@charset 'utf-8';
+
+/**/
+tr:first-child td {
+  border-top: none;
+}
+
+
+/* 게시판 테이블 */
+.board_tbl {
+  width: 100%;
+  min-width: 600px;
+  text-align: center;
+  border-spacing: 0;
+  border-collapse: collapse;
+  border-bottom: 1px solid #0067a3;
+  white-space: nowrap;
+}
+
+.board_tbl th {
+  height: 38px;
+  padding: 0 2px;
+  border-top: 1px solid #0067a3;
+  border-bottom: 1px solid #0067a3;
+}
+
+.board_tbl tbody tr {
+  height: 35px;
+  border-top: 1px solid #ddd;
+}
+
+.board_tbl tbody tr:not(.noAction):hover {
+  background-color: #eee;
+}
+
+.board_subject a {
+  display: inline-block;
+  vertical-align: middle;
+  max-width: 60%;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.board_subject a:-webkit-any-link:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.board_writer:hover {
+  cursor: pointer;
+}
+
+/* 버튼 스타일 */
+.btn_all,
+.btn_notice,
+.btn_popular,
+.btn_reply,
+.btn_mod,
+.btn_pre,
+.btn_next {
+  text-align: center;
+  display: inline-block;
+  border: 1px solid #d0d0d0;
+  border-radius: 2px;
+  background-color: transparent;
+  width: 60px;
+  height: 32px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 700;
+  outline: none;
+}
+
+.btn_all:hover,
+.btn_notice:hover,
+.btn_popular:hover,
+.btn_reply:hover,
+.btn_mod:hover,
+.btn_pre:hover,
+.btn_next:hover {
+  border: 1px solid #0067a3;
+}
+
+.btn_del {
+  text-align: center;
+  display: inline-block;
+  border: 1px solid #d0d0d0;
+  border-radius: 2px;
+  background-color: transparent;
+  width: 60px;
+  height: 32px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 700;
+  outline: none;
+  color:#ff5656;
+}
+
+.btn_del:hover {
+  border: 1px solid #ff5656;
+  background-color: rgba(255, 86, 86, 0.05);
+}
+
+.btn_search {
+  width:60px;
+  height:32px;
+  cursor: pointer;
+  text-align: center;
+  border: 1px solid #d0d0d0;
+  border-radius: 2px;
+  background-color: #0067a3;
+  color: #fff;
+  font-size: 14px;
+}
+
+.search_txt:focus {
+  border: 1px solid #0067a3;
+}
+
+.btn_write {
+  position: absolute;
+  top:0;
+  right: 0;
+  color: #0067a3;
+  text-align: center;
+
+  display: inline-block;
+  border: 1px solid #d0d0d0;
+  border-radius: 2px;
+  background-color: transparent;
+  width: 70px;
+  height: 35px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 700;
+  outline: none;
+}
+
+.btn_write:hover {
+  border: 1px solid #0067a3;
+  background-color: rgba(0, 103, 163, 0.1);
+}
+
+.btn_delete {
+  position: absolute;
+  top:0;
+  left:0;
+
+  text-align: center;
+  display: inline-block;
+  border:none;
+  border-radius: 2px;
+  background-color: transparent;
+  width: 70px;
+  height: 35px;
+  cursor: pointer;
+  font-size: 14px;
+  outline: none;
+  background-color: #c82848;
+  color:#fff;
+}
+
+.btn_reset {
+  display: inline-block;
+  border: 1px solid #d0d0d0;
+  border-radius: 2px;
+  background-color: #fff;
+  width: 70px;
+  height: 40px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 700;
+  outline: none;
+  color:#333;
+}
+
+.btn_reset:hover {
+  color:#000;
+  background-color: rgba(194,194,194,0.4);
+}
+
+.btn_submit {
+  display: inline-block;
+  border: 1px solid #d0d0d0;
+  border-radius: 2px;
+  background-color: rgba(0, 103, 163, 0.8);
+  width: 70px;
+  height: 40px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 700;
+  outline: none;
+  color:#ddd;
+}
+
+.btn_submit:hover {
+  background-color: rgba(0, 103, 163, 0.9);
+  color:#fff;
+}
+
+
+
+/* 버튼 클릭 후 css 변경 */
+.active {
+  background-color:#0067a3;
+  color:#fff;
+  border:1px solid #0067a3;
+}
+
+.search_wrap li {
+  display: inline-block;
+  vertical-align: bottom;
+}
+
+.tbl_btm {
+  position:relative;
+  margin-bottom: 70px;
+}
+
+
+.page_grp {
+  position: absolute;
+  top:50%;
+  left:50%;
+  transform: translate(-50%,0);
+  margin: 0 auto;
+}
+
+.page_grp li {
+  display: inline-block;
+  width: 35px;
+  height: 35px;
+  line-height: 35px;
+  border: 1px solid #ccc;
+  margin-bottom: 30px;
+  background-color: #fff;
+  font-weight: normal;
+  text-align: center;
+}
+
+.page_grp li:hover {
+  background-color: rgba(0, 103, 163, 0.1);
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.page_active {
+  background-color: #0067a3 !important;
+  color:#fff;
+  font-weight: 700;
+}
+
+/* 게시글 입력 css */
+.sel_19 {
+  padding: 5px;
+  border-radius: 2px;
+  border: 1px solid #d5d5d5;
+  width: 19%;
+  height: 40px;
+  font-size: 15px;
+}
+
+.sel_31 {
+  padding: 5px;
+  border-radius: 2px;
+  border: 1px solid #d5d5d5;
+  width: 31%;
+  height: 40px;
+  font-size: 15px;
+}
+
+.sel_68 {
+  padding: 5px;
+  border-radius: 2px;
+  border: 1px solid #d5d5d5;
+  width: 68%;
+  height: 40px;
+  font-size: 15px;
+}
+
+.input_box {
+  padding: 5px;
+  border-radius: 2px;
+  border: 1px solid #d5d5d5;
+  height: 40px;
+  font-size: 15px;
+}
+
+.input_box:focus {
+  outline: none;
+}
+
+.content_wrap {
+  line-height: 1.6;
+}
+
+.board_title a, .info_wrap {
+  color:#666;
+}
+
+.info_wrap ul li {
+  display: inline-block;
+  margin-right:3px;
+}
+
+.count {
+  color:#f66;
+}
+
+.board_title a:hover {
+  text-decoration: underline;
+}
+
+.board_writer {
+  color:#000;
+}
+
+.board_post {
+  height: calc(100% - 150px);
+  min-height: calc(100vh - 500px);
+}
+
+.btn_recmd {
+  display: inline-block;
+  border: 1px solid #d0d0d0;
+  border-radius: 2px;
+  background-color: #fff;
+  width: 70px;
+  height: 35px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 700;
+  outline: none;
+  color:#333;
+}
+
+.file_box {
+  display: inline-block;
+  border: 1px solid #d0d0d0;
+  border-radius: 2px;
+  background-color: #fff;
+  height: 35px;
+  line-height: 35px;
+  padding: 0 10px;
+}
+
+.btn_recmd:hover {
+  color:#000;
+  background-color: rgba(194,194,194,0.4);
+}
+
+.comment_wrap {
+  background-color: #f8f8f8;
+  padding: 20px;
+}
+
+.comment_post {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  padding: 10px;
+}
+
+.comment_post textarea {
+  width: 100%;
+  height: 50px;
+  border: none;
+  outline: none;
+  resize: vertical;
+}
+
+.comment_btn {
+  background-color: #ff5656;
+  color:#fff;
+  border:0;
+  width: 60px;
+  height: 30px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.comment_btn:hover {
+  background-color: #ff3636;
+  border-radius: 2px;
+}
+
+.comment_section {
+  border-bottom: 1px solid #bbb;  
+}
+
+.txt_regdate {
+  color:#959595;
+  font-size: 12px;
+}
+
+.cmt_head {
+  position: relative;
+}
+
+.a_wrap {
+  position: absolute;
+  top:0;
+  right:0;
+}
+
+.a_wrap a:hover {
+  text-decoration: underline;
+}
+
+.btn_container {
+  border-bottom: 1px solid #ddd;
+}
+
+.s_btn_mod {
+  color:#fff;
+  border:none;
+  background-color: #ff5656;
+  width: 40px;
+  padding: 3px 2px;
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+/*****모달******/
+.modal_wrap {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left:0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.4);
+}
+
+.modal {
+  background-color: #fefefe;
+  margin:15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 600px;
+  height: 250px;
+  border-radius: 2px;
+}
+
+.modal h2 {
+  display: inline-block;
+}
+
+.close {
+  color:#aaa;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.modal_tbl {
+  text-align: center;
+  border-spacing: 0;
+  border-collapse: collapse;
+  border: 1px solid #ddd;
+}
+
+.modal_tbl td {
+  padding: 2px;
+  border: 1px solid #ddd;
+}
+
+.modal_tbl td:nth-child(odd) {
+  background-color: #eee;
+  white-space: nowrap;
+  width: 10%;
+}
+
+.modal_tbl td:nth-child(even) {
+  background-color: #fff;
+}
+
+.td_col1 {
+  width: 10%;
+}
+
+.td_col2 {
+  width: 20%;
+}
+
+.modal_btm {
+  position: relative;
+}
+
+.btn_pwdinit {
+  position: absolute;
+  top:0;
+  left: 0;
+
+  text-align: center;
+  display: inline-block;
+  border: 1px solid #d0d0d0;
+  border-radius: 2px;
+  background-color: transparent;
+  height: 40px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 700;
+  outline: none;
+  color:#ff5656;
+}
+
+.btn_pwdinit:hover {
+  border: 1px solid #ff5656;
+  background-color: rgba(255, 86, 86, 0.05);
+}

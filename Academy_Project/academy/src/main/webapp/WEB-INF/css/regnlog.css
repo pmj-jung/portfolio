@@ -1,0 +1,131 @@
+@charset 'utf-8';
+
+  .login_wrapper {
+    min-height: calc(100vh - 115px);
+  }
+
+  .login_content {
+    background-color: #fff;
+    box-shadow: 0px 2px 20px 0px rgb(0 0 0 / 15%);
+    width: 360px;
+  }
+
+  .lgnIpBox {
+    position: relative;
+  }
+
+  .must::after {
+    position: absolute;
+    left: 5px;
+    line-height: 32px;
+    content: "*";
+    color:red;
+  }
+  
+  .lgnIpBox select, .lgnIpBox input{
+    width: 100%;
+    height: 32px;
+    font-size: 13px;
+    border-radius: 0px;
+    border:none;
+    border-bottom: 1px solid #ddd;
+    outline: none;
+  }
+
+  .lgnIpBox select::after {
+    content:"";
+    display:table;
+  }
+
+  .lgnIpBox input[type="text"]:focus, .lgnIpBox input[type="password"]:focus  {
+    border-bottom: 1px solid #4671f3;
+    transition: 0.3s;
+  }
+
+  .pwd_desc {
+    color: #666;
+  }
+
+  .lgn_save {
+    position:relative;
+    display: block;
+    height: 15px;
+  }
+  
+  .lgn_save input {
+    position: absolute;
+    top: 1px;
+    left: 1px;
+    width: 13px;
+    height: 13px;
+    cursor: pointer;
+  }
+
+  .lgn_save label {
+    position: absolute;
+    top: 0;
+    left: -1px;
+    padding-left: 19px;
+    height: 15px;
+    line-height: 15px;
+    color: #a3a3a3;
+  }
+
+  .lgn_save a {
+    position: absolute;
+    top: 0;
+    right: -1px;
+    height: 15px;
+    line-height: 15px;
+    color: #a3a3a3;
+    cursor: pointer;
+  }
+
+  .lgn_save a:hover, .link a:hover {
+    text-decoration: underline;
+  }
+
+  .submit_btn {
+    width: 100%;
+    height: 44px;
+    line-height: 44px;
+    border: none;
+    border-radius: 5px;
+    background: #4671f3;
+    color:#fff;
+    font-size: 15px;
+    cursor: pointer;
+  }
+
+  .chkBtn {
+    border : none;
+    border-radius: 3px;
+    background-color: #4671f3;
+    color: #fff;
+    cursor: pointer;
+  }
+
+  .chkBtn:hover, .submit_btn:hover {
+    background-color: #3366ff;
+  }
+
+  .etc_text, .link a {
+    color: #a1a1a1;
+  }
+
+  .etc_text span {
+    color: #043D5D;
+    display: inline-block;
+    padding-right: 5px;
+  }
+  
+  .btn_test {
+    background-color: #ff5656;
+    color:#fff;
+    border:0;
+    width: 90px;
+    height: 30px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 700;
+  }

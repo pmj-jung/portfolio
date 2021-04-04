@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="regnlog">
+
+<select id="checkSameId" parameterType="String" resultType="int">
+	SELECT count(id) FROM user 
+	WHERE user_id = #{userId} 
+</select>
+
+<insert id="setRegister" parameterType="uservo">
+	INSERT INTO user SET 
+	user_id = #{userId},
+	user_pwd = #{userPwd},
+	user_name = #{userName},
+	user_gender = #{userGender},
+	user_phone = #{userPhone},
+	user_email = #{userEmail},
+	user_regdate = now(),
+	user_auth = 1
+</insert>
+
+<select id="getPassword" parameterType="uservo" resultType="String">
+	SELECT user_pwd AS userPwd 
+	FROM user 
+	WHERE user_id = #{userId} 
+</select>
+
+<select id="loginCheck" parameterType="uservo" resultType="uservo">
+	SELECT 
+		U.id AS uid,
+		user_name AS userName,
+		user_gender AS userGender,
+		user_phone AS userPhone,
+		user_email AS userEmail,
+		user_regdate AS userRegdate,
+		user_auth AS userAuth,
+		auth_name AS authName 
+	FROM user AS U 
+	LEFT JOIN user_auth AS A ON U.user_auth = A.id 
+	WHERE user_id = #{userId} AND user_pwd = #{userPwd} 
+</select>
+
+</mapper>

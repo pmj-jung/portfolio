@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+	<typeAliases>
+		<typeAlias alias="uservo" type="com.portfolio.academy.model.UserVO"/>
+		<typeAlias alias="boardvo" type="com.portfolio.academy.model.BoardVO"/>
+		<typeAlias alias="articlevo" type="com.portfolio.academy.model.ArticleVO"/>
+		<typeAlias alias="likesvo" type="com.portfolio.academy.model.LikesVO"/>
+		<typeAlias alias="commentvo" type="com.portfolio.academy.model.CommentVO"/>
+	</typeAliases>
+</configuration>
+
+
+
+
+
+

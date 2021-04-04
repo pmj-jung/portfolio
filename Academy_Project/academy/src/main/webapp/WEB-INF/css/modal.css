@@ -1,0 +1,45 @@
+@charset "UTF-8";
+/* modal css */
+    .flex-wrap {
+	    flex-wrap: wrap;
+	}
+    .modal-wrapper {
+        background-color: rgba(0, 0, 0, 0.3);
+        width: 100%;
+        height: 100%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        visibility: hidden;
+        /* 눌렀을 때 나와야 하니깐 = visibility */
+        transition: 0.3s;
+    }
+
+    .modal-wrapper.open {
+        visibility: visible;
+        opacity: 1;
+        transition: 0.3s;
+    }
+
+    .modal-wrapper.open .modal {
+        opacity: 1;
+    }
+
+    .modal {
+        width: 900px;
+        min-height: 260px;
+        height: 30vh;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: #fff;
+        opacity: 0;
+        border-radius: 5px;
+        padding: 20px;
+
+        box-shadow: -60px 0px 100px -90px #000,
+            60px 0px 100px -90px #000;
+    }
+
+    /* modal css */

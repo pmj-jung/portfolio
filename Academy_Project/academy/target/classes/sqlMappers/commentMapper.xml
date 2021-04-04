@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="comment">
+
+	<insert id="setComment" parameterType="commentvo">
+		<selectKey resultType="int" keyProperty="cmntRef" order="BEFORE" >
+			SELECT IFNULL(MAX(id), 0) + 1 FROM comment_${boardCode} 
+		</selectKey>
+	
+		INSERT comment_${boardCode} SET 
+			article_id = #{articleId},
+			cmnt_content = #{cmntContent},
+			cmnt_writer = #{cmntWriter},
+			cmnt_ref = #{cmntRef},
+			cmnt_level = 0,
+			cmnt_layer = 0,
+			cmnt_regdate = now() 
+	</insert>
+	
+	<select id="getCommentList" parameterType="commentvo" resultType="commentvo">
+		SELECT 
+			C.id AS cid,
+			article_id AS articleId,
+			cmnt_content AS cmntContent,
+			cmnt_writer AS cmntWriter,
+			cmnt_ref AS cmntRef,
+			cmnt_level AS cmntLevel,
+			cmnt_regdate AS cmntRegdate,
+			cmnt_layer AS cmntLayer,
+			U.user_name AS cmntWriterName  
+		FROM comment_${boardCode} AS C 
+		JOIN user AS U 
+		ON C.cmnt_writer = U.id 
+		WHERE article_id = #{articleId} 
+		ORDER BY C.cmnt_ref DESC, cmnt_level ASC, C.id DESC 
+	</select>
+	
+	<select id="getCommentCount" parameterType="commentvo" resultType="int">
+		SELECT count(id) FROM comment_${boardCode} WHERE article_id = #{articleId} 
+	</select>
+	
+	<update id="commentDelete" parameterType="commentvo">
+		UPDATE comment_${boardCode} SET 
+		cmnt_content = 'deleted' 
+		WHERE id = #{cid} 
+	</update>
+	
+	<delete id="deleteComments" parameterType="articlevo">
+		DELETE FROM comment_${boardCode} 
+		WHERE article_id = #{aid} 
+	</delete>
+	
+	<update id="modifyComment" parameterType="commentvo">
+		UPDATE comment_${boardCode} SET 
+			cmnt_content = #{cmntContent},
+			cmnt_regdate = now() 
+		WHERE id = #{cid} 
+	</update>
+	
+	<select id="getReplyInfo" parameterType="commentvo" resultType="commentvo">
+		SELECT 
+			cmnt_ref AS cmntRef,
+			cmnt_level AS cmntLevel,
+			cmnt_layer AS cmntLayer 
+		FROM comment_${boardCode} 
+		WHERE id = #{cid} 
+	</select>
+	
+	<update id="setCommentLevel" parameterType="commentvo">
+		UPDATE comment_${boardCode} SET 
+			cmnt_level = cmnt_level + 1 
+		WHERE cmnt_ref = #{cmntRef} AND cmnt_level > #{cmntLevel} 
+	</update>
+	
+	<insert id="setCommentReply" parameterType="commentvo">
+		INSERT comment_${boardCode} SET 
+			article_id = #{articleId},
+			cmnt_content = #{cmntContent},
+			cmnt_writer = #{cmntWriter},
+			cmnt_ref = #{cmntRef},
+			cmnt_level = #{cmntLevel} + 1,
+			cmnt_layer = #{cmntLayer} + 1,
+			cmnt_regdate = now() 
+	</insert>
+
+</mapper>
