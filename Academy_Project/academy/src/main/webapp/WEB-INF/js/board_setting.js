@@ -25,7 +25,7 @@ $('#checkAll').click(function() {
 			}
 
 			$.ajax({
-				url		: "/academy/deleteBoard.do",
+				url		: "/academy/deleteBoard",
 				type	: "POST",
 				data	: {chkArr : chkArray},
 				success	: function(resData){
@@ -71,7 +71,7 @@ $('#checkAll').click(function() {
 		}
 		
 		$.ajax({
-		  url : "/academy/setBoard.do",
+		  url : "/academy/setBoard",
 		  type : "POST",
 		  data : $("#board_frm").serialize(),
 		  success : function(resData) {
@@ -82,7 +82,7 @@ $('#checkAll').click(function() {
 				  return false;
 			  }else {
 				  alert( $("#boardCode").val() + "게시판 & 댓글게시판이 생성되었습니다.");
-					window.location.href = 	"/academy/boardSetting.do";
+					window.location.href = 	"/academy/boardSetting";
 			  }
 		  },
 		  error : function(){
@@ -98,7 +98,7 @@ $('#checkAll').click(function() {
   function getBoardOne(boardCode){
 	  
 	  $.ajax({
-		  url : "/academy/getBoardOne.do",
+		  url : "/academy/getBoardOne",
 		  type : "POST",
 			data : {"boardCode" : boardCode},
 			success : function(resData) {
@@ -145,13 +145,13 @@ $('#checkAll').click(function() {
 	  };
 	  
 	  $.ajax({
-		  url : "/academy/modifyBoard.do",
+		  url : "/academy/modifyBoard",
 		  type : "POST",
 		  data : modalData,
 		  success : function(resData) {
 			  if(resData == 'success') {
 				  alert("게시판 설정을 성공적으로 변경하였습니다.");
-				  window.location.href = '/academy/boardSetting.do';
+				  window.location.href = '/academy/boardSetting';
 			  }
 		  },
 		  error : function(){

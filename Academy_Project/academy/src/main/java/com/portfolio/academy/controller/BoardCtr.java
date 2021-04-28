@@ -50,7 +50,6 @@ public class BoardCtr {
 		
 		// failure : 게시판코드 중복
 		// success : 게시판설정저장+게시글테이블생성+댓글테이블생성 완료
-		
 		return result;
 	}
 	

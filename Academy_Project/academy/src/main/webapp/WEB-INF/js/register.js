@@ -88,7 +88,7 @@
 			  success : function(resData){
 				if(resData == "success"){
 					alert("회원가입이 완료되었습니다.\n로그인 후 이용해주세요.");
-					window.location.href ="/academy/login.do";
+					window.location.href ="/academy/login";
 				}else{
 					alert("이미 존재하는 아이디입니다.\n아이디를 변경해주세요.");
 					$("#userId").val("");

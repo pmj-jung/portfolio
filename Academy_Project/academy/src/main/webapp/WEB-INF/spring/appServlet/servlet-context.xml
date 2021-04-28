@@ -48,7 +48,10 @@
 	
 	<interceptors>
 			<interceptor>
-				<mapping path="/*.do" />
+				<mapping path="/articleView" />
+				<mapping path="/articleWrite" />
+				<mapping path="/articleDownload" />
+				<mapping path="/boardSetting" />
 				<beans:ref bean="loginInter" />
 			</interceptor>
 	</interceptors>

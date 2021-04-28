@@ -12,7 +12,7 @@
 	  }
 	  
 	  $.ajax({
-		  url : "/academy/articleLikes.do",
+		  url : "/academy/articleLikes",
 		  type : "POST",
 		  data : likesData,
 		  success : function(resData){
@@ -29,7 +29,7 @@
 	  var boardCode = $("#boardCode").val();
 	  
 	  $.ajax({
-		  url : "/academy/delArticleOne.do",
+		  url : "/academy/delArticleOne",
 		  type : "POST",
 		  data : {
 			  boardCode : boardCode,
@@ -37,7 +37,7 @@
 		  },
 		  success : function(resData){
 			  alert("성공적으로 삭제되었습니다");
-			 	location.href="board.do?boardCode=" + boardCode;
+			 	location.href="board?boardCode=" + boardCode;
 		  },
 		  error : function(){
 			  alert("ajax 에러");
@@ -69,7 +69,7 @@
 	  
 		var formData = $("#cmntForm").serialize();
 		$.ajax({
-			url : "/academy/setComment.do",
+			url : "/academy/setComment",
 			type : "POST",
 			data : formData,
 			success : function(resData) {
@@ -86,7 +86,7 @@
 	  var formData = $("#cmntForm").serialize();
 		
 	  $.ajax({
-		  url : "/academy/getCommentList.do",
+		  url : "/academy/getCommentList",
 		  type : "POST",
 		  data : formData,
 		  success : function(resData) {
@@ -207,7 +207,7 @@
 	  }
 
 	  $.ajax({
-		  url : "/academy/commentDelete.do",
+		  url : "/academy/commentDelete",
 		  type : "POST",
 		  data : formData,
 		  success : function(resData) {
@@ -248,7 +248,7 @@
 	  };
 	  
 	  $.ajax({
-		  url : "/academy/modifyComment.do",
+		  url : "/academy/modifyComment",
 		  type : "POST",
 		  data : formData,
 		  success : function(resData) {
@@ -292,7 +292,7 @@
 	  };
 	  
 	  $.ajax({
-	  	url : "/academy/commentReply.do",
+	  	url : "/academy/commentReply",
 		  type : "POST",
 		  data : formData,
 		  success : function(resData) {

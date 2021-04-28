@@ -35,7 +35,7 @@
 			}
 			
 			$.ajax({
-				url		: "/academy/deleteArticle.do",
+				url		: "/academy/deleteArticle",
 				type	: "POST",
 				data	: {
 					boardCode : boardCode,
@@ -56,5 +56,5 @@
 		var boardCode = $("#hiddenCode").val();
 		var nowPage = $("#nowPage").val();
 		var sel = document.getElementById('pageChange').value;
-		location.href="board.do?boardCode=" + boardCode + "&nowPage="+ nowPage + "&cntPerPage="+sel;
+		location.href="board?boardCode=" + boardCode + "&nowPage="+ nowPage + "&cntPerPage="+sel;
 	}

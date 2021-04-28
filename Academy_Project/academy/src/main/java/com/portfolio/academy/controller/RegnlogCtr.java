@@ -50,11 +50,10 @@ public class RegnlogCtr {
 		return result;
 	}
 	
-	// 회원가입 INSERT
+	// 회원가입
 	@RequestMapping(value = "/setRegister", method = RequestMethod.POST)
 	@ResponseBody
 	public String setRegister(@ModelAttribute UserVO uvo) {
-		// System.out.println(uvo.getUserId() + uvo.getUserPwd() + uvo.getUserName() + uvo.getUserGender() + uvo.getUserPhone() + uvo.getUserEmail() );
 		int count = regnlogSrv.checkSameId(uvo.getUserId()); // 아이디중복확인
 		
 		// 비밀번호 암호화
@@ -88,7 +87,6 @@ public class RegnlogCtr {
 	// 로그인하기
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public ModelAndView loginCheck(@ModelAttribute UserVO uvo,HttpSession session) {
-//		System.out.println("입력된 userId : " + uvo.getUserId() + ",입력된 userPwd : " + uvo.getUserPwd());
 		ModelAndView mav = new ModelAndView();
 		
 		String pwd = regnlogSrv.getPassword(uvo);
